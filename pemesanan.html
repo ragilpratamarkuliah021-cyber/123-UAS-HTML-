@@ -109,7 +109,6 @@
         </form>
     </div>
 
-    <!-- SCRIPT JAVASCRIPT -->
     <script>
     function kalkulasiHarga() {
         const produkPilihan = document.getElementById('produk');
@@ -131,7 +130,7 @@
     }
 
     function prosesPemesanan(event) {
-        event.preventDefault(); // Mencegah form langsung submit/pindah halaman default
+        event.preventDefault(); 
 
         const nama = document.getElementById('nama').value;
         const produkEl = document.getElementById('produk');
@@ -141,29 +140,24 @@
             return false;
         }
 
-        // Mengambil teks nama produk (bukan valuenya yang berupa angka)
         const namaProduk = produkEl.options[produkEl.selectedIndex].text;
         const harga = parseFloat(produkEl.value);
         const jumlah = document.getElementById('jumlah').value;
-        
-        // Mengambil nilai radio button metode pembayaran yang dipilih
         const metodeBayar = document.querySelector('input[name="bayar"]:checked').value;
 
-        // Menyimpan data ke dalam LocalStorage
         const dataPesanan = {
             namaPemesan: nama,
             hp: document.getElementById('hp').value,
-            produk: namaProduk.split(' - ')[0], // Mengambil nama sepedanya saja
+            produk: namaProduk.split(' - ')[0], 
             hargaSatuan: harga,
             jumlah: jumlah,
             totalHarga: harga * jumlah,
             metodePembayaran: metodeBayar,
-            tanggalPesanan: new Date().toLocaleDateString('id-ID') // Tanggal hari ini
+            tanggalPesanan: new Date().toLocaleDateString('id-ID') 
         };
 
         localStorage.setItem('strukPesanan', JSON.stringify(dataPesanan));
 
-        // Pindah ke halaman struk
         window.location.href = 'struk.html';
     }
 </script>
